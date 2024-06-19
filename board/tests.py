@@ -1,60 +1,36 @@
 from django.test import TestCase
+#write a test to try board serializer.Create  and instance of a board and then,create two lists,associate with them and try that the serializer
+#return the board with the lists
+from rest_framework.test import APIClient
+from rest_framework import status
+from django.urls import reverse
+from board.models import Board
+from list.models import List
+from board.board_serializer import BoardSerializer
 
 # Create your tests here.
-import requests
+class BoardModelTestCase(TestCase):
+    def setUp(self):
+        self.board_name = "Test Board"
+        self.board_description = "A board for testing"
+        self.board = Board.objects.create(name=self.board_name, description=self.board_description)
+        #save board and list
+        self.list = List(name="Test List", board=self.board, position=1)
+    #try to serialize a board with a list
+    def test_serializer_can_create_a_board(self):
+        serializer = BoardSerializer(self.board)
+        self.assertEqual(serializer.data["name"], self.board_name)
+        self.assertEqual(serializer.data["description"], self.board_description)
+        self.assertEqual(serializer.data["lists"][0], self.list.id)
+    #test get all boards
+    def test_api_can_get_all_boards(self):
+        client = APIClient()
+        response = client.get(reverse("board-list"))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #test get a specific board
+    def test_api_can_get_a_board(self):
+        self.list.save() 
+        client = APIClient()
+        response = client.get(reverse("board-detail", kwargs={"pk": self.board.id}))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-BASE_URL = "http://127.0.0.1:8000/rello/api/v1/"
-TEST_RESULTS_FILE = "test_results.txt"
-
-def write_result(endpoint_name, method, headers, body, response):
-    with open(TEST_RESULTS_FILE, 'a') as file:
-        file.write(f"Endpoint: {endpoint_name}\n")
-        file.write(f"Method: {method}\n")
-        file.write(f"Request Headers: {headers}\n")
-        if body:
-            file.write(f"Request Body: {body}\n")
-        file.write(f"Response: {response}\n")
-        for(key, value) in response.headers.items():
-            file.write(f"Response Header: {key}: {value}\n")
-        file.write("\n")
-
-def test_get_boards():
-    endpoint_name = "List all boards"
-    url = f"{BASE_URL}boards/"
-    headers = {"Content-Type": "application/json"}
-    response = requests.get(url, headers=headers)
-    write_result(endpoint_name, "GET", headers, None, response)
-
-def test_create_board():
-    endpoint_name = "Create a new board"
-    url = f"{BASE_URL}boards/"
-    headers = {"Content-Type": "application/json"}
-    body = {"name": "Test Board", "description": "A board for testing"}
-    response = requests.post(url, headers=headers,json=body)
-    write_result(endpoint_name, "POST", headers, body, response)
-
-def test_get_board(board_id):
-    endpoint_name = f"Retrieve a specific board"
-    url = f"{BASE_URL}boards/{board_id}/"
-    headers = {"Content-Type": "application/json"}
-    response = requests.get(url, headers=headers)
-    write_result(endpoint_name, "GET", headers, None, response)
-
-def test_update_board(board_id):
-    endpoint_name = "Update a specific board"
-    url = f"{BASE_URL}boards/{board_id}/"
-    headers = {"Content-Type": "application/json"}
-    body = {"name": "Updated Test Board", "description": "Updated description"}
-    response = requests.put(url, headers=headers, json=body)
-    write_result(endpoint_name, "PUT", headers, body, response)
-
-def test_delete_board(board_id):
-    endpoint_name = "Delete a specific board"
-    url = f"{BASE_URL}boards/{board_id}/"
-    headers = {"Content-Type": "application/json"}
-    response = requests.delete(url, headers=headers)
-    write_result(endpoint_name, "DELETE", headers, None, response)
-
-#test all functions and write
-test_get_boards()
-test_create_board()
