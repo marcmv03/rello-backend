@@ -8,7 +8,7 @@ from board.models import Board
 from list.models import List
 from board.board_serializer import BoardSerializer
 
-# Create your tests here.
+# Create your tests heree.
 class BoardModelTestCase(TestCase):
     def setUp(self):
         self.board_name = "Test Board"
