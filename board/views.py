@@ -5,11 +5,15 @@ from rest_framework.views import APIView
 from django.http import Http404, JsonResponse
 from .models import Board
 from .board_serializer import BoardSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class BoardListCreateView(APIView):
     """
     View to list all boards and create a new board.
     """
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def get(self,request, format=None):
         boards = Board.objects.all()
@@ -29,7 +33,8 @@ class BoardDetailView(APIView):
     """
     View to retrieve, update, or delete a board instance.
     """
-
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         try:
             return Board.objects.get(pk=pk)
@@ -50,7 +55,7 @@ class BoardDetailView(APIView):
         board.save()
         serializer = BoardSerializer(board)
     
-    def delete(self,pk):
+    def delete(self,request,pk):
         try:
             board = self.get_object(pk)
             board.delete()
