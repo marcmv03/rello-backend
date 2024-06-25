@@ -15,7 +15,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'name', 'description','list_ids']
+        fields = ['id', 'name', 'description','list_ids','profile']
     def update(self, instance, validated_data):
         return Board.objects.update(instance, validated_data)
     def create(self, validated_data):

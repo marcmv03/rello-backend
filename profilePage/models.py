@@ -7,5 +7,4 @@ class Profile(User):
     """
     Model for user profile.
     """
-
     bio = models.TextField(blank=True)
