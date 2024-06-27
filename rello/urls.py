@@ -24,6 +24,6 @@ urlpatterns = [
     path('rello/api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
     path('rello/api/v1/', include('board.urls')),
     path('rello/api/v1/', include('card.urls')),
-    path('rello/api/v1/', include('list.urls'))
+    path('rello/api/v1/', include('list.urls')),
     path('rello/api/v1/', include('profilePage.urls'))
 ]

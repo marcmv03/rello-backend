@@ -21,6 +21,10 @@ class BoardListCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        profile  = request.user 
+        board_data = request.data
+        #add  profile to data
+        board_data['profile'] = profile.id
         serializer = BoardSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -48,6 +52,9 @@ class BoardDetailView(APIView):
 
     def put(self, request, pk, format=None):
         board = self.get_object(pk)
+        user = request.user
+        if board.profile != user:
+            return Response({"error": "You are not authorized to update this board"}, status=status.HTTP_401_UNAUTHORIZED)
         serializer = BoardSerializer(board, data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -60,6 +67,9 @@ class BoardDetailView(APIView):
             board = self.get_object(pk)
             board.delete()
             id = board.id
+            user = request.user
+            if board.profile != user:
+                return Response({"error": "You are not authorized to delete this board"}, status=status.HTTP_401_UNAUTHORIZED)
             return JsonResponse({"id": id })
         except Board.DoesNotExist:
             raise Http404
