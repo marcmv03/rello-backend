@@ -1,0 +1,191 @@
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [404]>
+Status Code: 404
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [404]>
+Status Code: 404
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [404]>
+Status Code: 404
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [404]>
+Status Code: 404
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [500]>
+Status Code: 500
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Status Code: 400
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [500]>
+Status Code: 500
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Status Code: 400
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Status Code: 200
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Status Code: 400
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Status Code: 200
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Status Code: 400
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Response Header: Date: Thu, 13 Jun 2024 20:54:45 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 2
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Response Header: Date: Thu, 13 Jun 2024 20:54:45 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 34
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Response Header: Date: Thu, 13 Jun 2024 20:56:47 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 2
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Response Header: Date: Thu, 13 Jun 2024 21:01:52 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 2
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [400]>
+Response Header: Date: Thu, 13 Jun 2024 21:01:52 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 34
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: List all boards
+Method: GET
+Request Headers: {'Content-Type': 'application/json'}
+Response: <Response [200]>
+Response Header: Date: Thu, 13 Jun 2024 21:06:03 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: application/json
+Response Header: Vary: Accept, Cookie
+Response Header: Allow: GET, POST, HEAD, OPTIONS
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 2
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
+Endpoint: Create a new board
+Method: POST
+Request Headers: {'Content-Type': 'application/json'}
+Request Body: {'name': 'Test Board', 'description': 'A board for testing'}
+Response: <Response [500]>
+Response Header: Date: Thu, 13 Jun 2024 21:06:04 GMT
+Response Header: Server: WSGIServer/0.2 CPython/3.12.4
+Response Header: Content-Type: text/html; charset=utf-8
+Response Header: X-Frame-Options: DENY
+Response Header: Content-Length: 186248
+Response Header: Vary: Cookie
+Response Header: X-Content-Type-Options: nosniff
+Response Header: Referrer-Policy: same-origin
+Response Header: Cross-Origin-Opener-Policy: same-origin
+
