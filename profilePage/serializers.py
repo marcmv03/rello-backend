@@ -9,11 +9,17 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ['id', 'username','password','email','first_name','last_name', 'bio']
 #create profile.If the user already exits throw exception
-    def create(self, validated_data):
+    def create(self, validated_data) :
         email  = validated_data.get('email')
         if Profile.objects.filter(email=email).exists():
             raise serializers.ValidationError('Profile already exists')
-        return Profile.objects.create(**validated_data)
+        password = validated_data.get('password')
+         #pop password to data
+        validated_data.pop('password')
+        result =  Profile.objects.create(**validated_data)
+        User.set_password(self=result,raw_password= password)
+        result.save()
+        return result.id 
 #update profile
     def update(self, instance, validated_data):
         instance.bio = validated_data.get('bio', instance.bio)

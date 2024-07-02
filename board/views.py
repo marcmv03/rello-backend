@@ -22,10 +22,12 @@ class BoardListCreateView(APIView):
 
     def post(self, request, format=None):
         profile  = request.user 
-        board_data = request.data
+        print(profile)
+        board_data = dict(request.data)
         #add  profile to data
         board_data['profile'] = profile.id
-        serializer = BoardSerializer(data=request.data)
+        print(board_data)
+        serializer = BoardSerializer(data=board_data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         board = serializer.create(request.data)

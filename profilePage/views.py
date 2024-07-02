@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Profile
+from rest_framework import serializers
 
 from profilePage.serializers import ProfileSerializer
 class ProfileView(APIView) :
@@ -35,11 +36,15 @@ class ProfileCreateView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
     def post(self,request,format=None):
+        try :
             profile_serializer = ProfileSerializer(data=request.data)
             if profile_serializer.is_valid():
-                profile_serializer.create(request.data)
-                return Response(profile_serializer.data)
+                id = profile_serializer.create(request.data)
+                if id :
+                    return Response({"id": id}, status=status.HTTP_201_CREATED)
             return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except serializers.ValidationError as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
       
                 
 
