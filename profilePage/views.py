@@ -26,6 +26,8 @@ class ProfileView(APIView) :
       def put(self,request,id,format=None):
            #update profile
             profile = Profile.objects.get(id = id )
+            if profile.id !=  request.user :
+                return Response({"error":"You are not the user of this profile"},status =status.HTTP_401_UNAUTHORIZED )
             profile_serializer = ProfileSerializer(profile,data=request.data)
             if profile_serializer.is_valid():
                 profile_serializer.update(profile,request.data)

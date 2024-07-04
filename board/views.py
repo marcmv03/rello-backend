@@ -3,6 +3,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404, JsonResponse
+
+from profilePage.models import Profile
 from .models import Board
 from .board_serializer import BoardSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -21,19 +23,20 @@ class BoardListCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        profile  = request.user 
-        print(profile)
+        user   = request.user
+        profile = Profile.objects.get(id = user.id ) 
+        print(type(profile))
         board_data = dict(request.data)
         #add  profile to data
-        board_data['profile'] = profile.id
+        board_data['profile'] = profile
         print(board_data)
         serializer = BoardSerializer(data=board_data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        board = serializer.create(request.data)
-        board.save()
+        board = serializer.create(board_data)
+        board_id = board.id
         serializer = BoardSerializer(board)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({"id":board_id}, status=status.HTTP_201_CREATED)
 
 class BoardDetailView(APIView):
     """

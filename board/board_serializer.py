@@ -19,4 +19,5 @@ class BoardSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         return Board.objects.update(instance, validated_data)
     def create(self, validated_data):
-        return Board.objects.create(**validated_data)  
+        board = Board.objects.create(**validated_data)
+        return board   

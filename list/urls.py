@@ -1,7 +1,7 @@
 from django.urls import path
-from list import views
+from list.views import ListCreateView,ListDetailView
 urlpatterns = [
-    #path('list/', views.list, name='list'),
-    #path('list/<int:id>/', views.list_detail, name='list_detail'),
+    path('boards/<int:id>/lists', ListCreateView.as_view(), name='list'),
+    path('lists/<int:id>/', ListDetailView.as_view(), name='list_detail'),
     #path('list/<int:id>/change/', views.list_change, name='list_change')
 ] 
