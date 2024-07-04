@@ -3,6 +3,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404, JsonResponse
+
+from profilePage.models import Profile
 from .models import List, Board
 from .list_serializer import ListSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -15,23 +17,24 @@ class ListCreateView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
-    def get(self, request, id, format=None):
+    def get(self, request, board_id, format=None):
         try:
-            board = Board.objects.get(id=id)
+            board = Board.objects.get(id=board_id)
             lists = List.objects.filter(board=board)
             serializer = ListSerializer(lists, many=True)
             return Response(serializer.data)
         except Board.DoesNotExist:
             return Response({"error": "Board not found"}, status=status.HTTP_404_NOT_FOUND)
 
-    def post(self, request, id, format=None):
+    def post(self, request, board_id, format=None):
         try:
-            profile = request.user
-            board = Board.objects.get(id=id)
+            print(board_id)
+            profile = Profile.objects.get(id = request.user.id )
+            board = Board.objects.get(id=board_id)
             if board.profile != profile:
                 return Response({"error": "You are not authorized to add a list to this board"}, status=status.HTTP_401_UNAUTHORIZED)
             list_data = dict(request.data)
-            list_data['board'] = board.id
+            list_data['board'] = board
             serializer = ListSerializer(data=list_data)
             if not serializer.is_valid():
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -4,9 +4,9 @@ class ListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = List
-        fields = '__all__'
+        fields = ['name','board']
     def create(self, validated_data):
         return List.objects.create(**validated_data)
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
-        return instance
+        return instance.save()
