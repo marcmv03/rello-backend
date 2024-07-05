@@ -34,7 +34,8 @@ class ListCreateView(APIView):
             if board.profile != profile:
                 return Response({"error": "You are not authorized to add a list to this board"}, status=status.HTTP_401_UNAUTHORIZED)
             list_data = dict(request.data)
-            list_data['board'] = board
+            list_data['board'] = board.id
+            print(list_data)
             serializer = ListSerializer(data=list_data)
             if not serializer.is_valid():
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -86,6 +87,7 @@ class ListDetailView(APIView):
         try:
             list_instance = self.get_object(id)
             user = request.user
+            profile = Profile.obje
             board = list_instance.board
             if board.profile != user:
                 return Response({"error": "You are not authorized to delete this list"}, status=status.HTTP_401_UNAUTHORIZED)

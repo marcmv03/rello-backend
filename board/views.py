@@ -58,7 +58,8 @@ class BoardDetailView(APIView):
     def put(self, request, pk, format=None):
         board = self.get_object(pk)
         user = request.user
-        if board.profile != user:
+        profile = Profile.objects.get(pk = user.id)
+        if board.profile != profile:
             return Response({"error": "You are not authorized to update this board"}, status=status.HTTP_401_UNAUTHORIZED)
         serializer = BoardSerializer(board, data=request.data)
         if not serializer.is_valid():

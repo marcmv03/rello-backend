@@ -1,6 +1,5 @@
 # board/serializers.py
 from rest_framework import serializers
-
 from list.models import List
 from .models import Board
 class BoardSerializer(serializers.ModelSerializer):
