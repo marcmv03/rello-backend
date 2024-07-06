@@ -6,7 +6,7 @@ class BoardSerializer(serializers.ModelSerializer):
     list_ids = serializers.SerializerMethodField("find_list_ids")
     def find_list_ids(self,instance):
         #get all the lists that belongs to a board
-        lists = List.objects.filter(board=instance)
+        lists = List.objects.filter(board=instance).order_by('position') 
         lists_ids = []
         for list in lists:
             lists_ids.append(list.id)

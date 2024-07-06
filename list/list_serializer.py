@@ -5,7 +5,8 @@ from rest_framework import serializers
 class ListSerializer(serializers.ModelSerializer):
     class Meta:
         model = List
-        fields = ['id','name','board']
+        fields = '__all__'
+    position = serializers.IntegerField(required = False) 
     def create(self, validated_data):
         name = validated_data['name']
         board_id  = validated_data['board']
