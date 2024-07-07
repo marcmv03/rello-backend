@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404, JsonResponse
 
-from profilePage.models import Profile
+from profile.models import Profile
 from .models import Board
 from .board_serializer import BoardSerializer
 from rest_framework.permissions import IsAuthenticated

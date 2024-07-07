@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rello',
     'rest_framework',
     'rest_framework_simplejwt',
-    'profilePage',  # add this line
+    'profile',  # add this line
 ]
 
 MIDDLEWARE = [

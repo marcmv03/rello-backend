@@ -25,5 +25,5 @@ urlpatterns = [
     path('rello/api/v1/', include('board.urls')),
     path('rello/api/v1/', include('card.urls')),
     path('rello/api/v1/', include('list.urls')),
-    path('rello/api/v1/', include('profilePage.urls'))
+    path('rello/api/v1/', include('profile.urls'))
 ]

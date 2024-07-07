@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404, JsonResponse
 
-from profilePage.models import Profile
+from profile.models import Profile
 from .models import List, Board
 from .list_serializer import ListSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -95,7 +95,7 @@ class ListDetailView(APIView):
             position = list_instance.position
             list_instance.delete()
             board.num_lists = board.num_lists -1 
-            lists_board = List.objects.filter(board = board).filter(position > position)
+            lists_board = List.objects.filter(board = board,position__gt = position)
             for list in lists_board :
                 list.position = list.position -1 
                 list.save() 
