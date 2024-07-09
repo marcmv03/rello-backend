@@ -1,4 +1,4 @@
-from profilePage.models import Profile
+from profile.models import Profile
 from django.test import TestCase
 #write a test to try board serializer.Create  and instance of a board and then,create two lists,associate with them and try that the serializer
 #return the board with the lists
