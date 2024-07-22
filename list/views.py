@@ -20,7 +20,7 @@ class ListCreateView(APIView):
     def get(self, request, board_id, format=None):
         try:
             board = Board.objects.get(id=board_id)
-            lists = List.objects.filter(board=board)
+            lists = List.objects.filter(board=board).order_by('position')
             serializer = ListSerializer(lists, many=True)
             return Response(serializer.data)
         except Board.DoesNotExist:
@@ -83,6 +83,9 @@ class ListDetailView(APIView):
             return Response(serializer.data)
         except List.DoesNotExist:
             return Response({"error": "List not found"}, status=status.HTTP_404_NOT_FOUND)
+        #value error exception
+        except ValueError:
+            return Response({"error": "Invalid position"}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id, format=None):
         try:

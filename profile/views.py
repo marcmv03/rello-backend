@@ -10,7 +10,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Profile
 from rest_framework import serializers
 
-from profile.serializers import ProfileSerializer
+from profile.profile_serializer import ProfileSerializer
 class ProfileView(APIView) :
       permission_classes = [IsAuthenticated]
       authentication_classes = [JWTAuthentication]

@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
 from .models import Profile
-from .serializers import ProfileSerializer
+from .profile_serializer import ProfileSerializer
 
 class ProfileSerializerTest(TestCase):
     def setUp(self):
