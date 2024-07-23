@@ -53,7 +53,7 @@ class ListPositionUpdateTestCase(TestCase):
     def test_update_position_unchanged(self):
         list_to_update = self.lists[2]
         new_position = 2
-        ListSerializer.update_positions(list_to_update, new_position)
+        ListSerializer.update_positions(list= list_to_update, new_position=new_position)
         self.assertEqual(List.objects.get(id=list_to_update.id).position, new_position)
         # Additional assertions to ensure no other lists' positions have changed
         self.lists = List.objects.filter(board=self.board).order_by('position')
